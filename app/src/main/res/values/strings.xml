@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">weatherList</string>
+    <string name="weather_min_max">min: %.2f max: %.2f</string>
+</resources>

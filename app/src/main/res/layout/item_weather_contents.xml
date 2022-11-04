@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="info"
+            type="com.song.weatherlist.data.model.WeatherInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/weather_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{info.dtTxt}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="today"/>
+
+        <ImageView
+            android:id="@+id/weather_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/weather_date"
+            bind:loadWeatherImage="@{info.weather.get(0).icon}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{info.weather.get(0).description}"
+            app:layout_constraintStart_toEndOf="@id/weather_img"
+            app:layout_constraintBottom_toBottomOf="@id/weather_img"
+            app:layout_constraintTop_toTopOf="@id/weather_img"
+            tools:text="cloudy dat"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/weather_min_max(info.main.tempMin, info.main.tempMax)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/weather_img"
+            tools:text="min:7 max: 10"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
