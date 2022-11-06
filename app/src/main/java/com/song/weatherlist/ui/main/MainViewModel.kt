@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.song.weatherlist.data.City
 import com.song.weatherlist.data.model.WeatherInfo
 import com.song.weatherlist.data.model.WeatherItem
+import com.song.weatherlist.data.model.WeatherViewType
 import com.song.weatherlist.usecase.MainUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -25,9 +26,9 @@ class MainViewModel @Inject constructor(private val mainUseCase: MainUseCase) : 
         viewModelScope.launch(Dispatchers.IO) {
             val resultData = ArrayList<WeatherItem>()
             for (i in City.values()) {
-                resultData.add(WeatherItem(i, 0))
+                resultData.add(WeatherItem(i, WeatherViewType.HEADER))
                 val result = mainUseCase.getFiveDayWeatherList(i.lat, i.lon)
-                val mapWeather = result.asSequence().map { info -> WeatherItem(info, 1) }.toList()
+                val mapWeather = result.asSequence().map { info -> WeatherItem(info, WeatherViewType.CONTENTS) }.toList()
                 resultData.addAll(mapWeather)
             }
 

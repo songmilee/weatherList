@@ -1,6 +1,7 @@
 package com.song.weatherlist.ui.main
 
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.song.weatherlist.R
 import com.song.weatherlist.databinding.ActivityMainBinding
 import com.song.weatherlist.ui.base.BaseActivity
@@ -13,5 +14,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun setup() {
         binding?.vm = mainViewModel
         binding?.weatherList?.adapter = adapter
+
+        val decoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        binding?.weatherList?.addItemDecoration(decoration)
     }
 }

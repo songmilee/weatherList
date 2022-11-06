@@ -9,6 +9,7 @@ import com.song.weatherlist.R
 import com.song.weatherlist.data.City
 import com.song.weatherlist.data.model.WeatherInfo
 import com.song.weatherlist.data.model.WeatherItem
+import com.song.weatherlist.data.model.WeatherViewType
 import com.song.weatherlist.databinding.ItemWeatherContentsBinding
 import com.song.weatherlist.databinding.ItemWeatherHeaderBinding
 
@@ -27,7 +28,7 @@ class MainAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if(viewType == 0) {
+        if(viewType == WeatherViewType.HEADER.type) {
             val binding = DataBindingUtil.inflate<ItemWeatherHeaderBinding>(LayoutInflater.from(parent.context), R.layout.item_weather_header, parent, false)
             return HeaderVH(binding)
         } else {
@@ -48,7 +49,7 @@ class MainAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemCount(): Int = dataList.size
 
-    override fun getItemViewType(position: Int): Int = dataList[position].viewType
+    override fun getItemViewType(position: Int): Int = dataList[position].viewType.type
 
     fun updateData(data: List<WeatherItem>) {
         dataList.clear()
