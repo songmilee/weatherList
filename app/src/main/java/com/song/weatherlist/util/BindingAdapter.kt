@@ -11,7 +11,7 @@ import com.song.weatherlist.ui.main.MainAdapter
 fun updateData(view: RecyclerView, data: List<WeatherItem>?) {
     data?.let {
         val adapter = view.adapter as MainAdapter
-        adapter.updateData(it)
+        adapter.submitList(it)
     }
 }
 
